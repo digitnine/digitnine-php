@@ -8,7 +8,7 @@
             "email": "sreekuttan.mohanan@digitnine.com",
             "homepage": "https://digitnine.com",
             "role": "Developer"
-        }, 
+        }
     ],
     "support": {
         "email": "support@digitnine.com",
@@ -26,8 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "digitnine\\Api\\": "src/"
-            // "digitnine\\Tests\\": "tests/"
+            "digitnine\\Api\\": "src/" 
         },
         "files" : ["Deprecated.php"]
     }
