@@ -26,8 +26,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Razorpay\\Api\\": "src/",
-            // "Razorpay\\Tests\\": "tests/"
+            "digitnine\\Api\\": "src/"
+            // "digitnine\\Tests\\": "tests/"
         },
         "files" : ["Deprecated.php"]
     }
