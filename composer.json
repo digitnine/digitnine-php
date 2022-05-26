@@ -1,0 +1,7 @@
+{
+    "name": "digitnine/digitnine",
+    "description": "Digit9 PHP SDK",
+    "require": {
+        "php": ">=7.4", 
+    }
+}
