@@ -1,7 +1,34 @@
 {
     "name": "digitnine/digitnine",
-    "description": "Digit9 PHP SDK",
+    "description": "Digit9 PHP Client Library",
+    "keywords": ["digitnine", "api", "php", "client"],
+    "authors": [
+        {
+            "name": "Sreekuttan M Acahri",
+            "email": "sreekuttan.mohanan@digitnine.com",
+            "homepage": "https://digitnine.com",
+            "role": "Developer"
+        }, 
+    ],
+    "support": {
+        "email": "support@digitnine.com",
+        "issues": "https://github.com/digitnine/digitnine-php/issues",
+        "source": "https://github.com/digitnine/digitnine-php"
+    },
+    "homepage": "https://digitnine.com",
+    "license": "MIT",
     "require": {
         "php": ">=7.4", 
+        "ext-json": "*"
+    },
+    "require-dev": { 
+        "phpunit/phpunit": "^9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Razorpay\\Api\\": "src/",
+            // "Razorpay\\Tests\\": "tests/"
+        },
+        "files" : ["Deprecated.php"]
     }
 }
