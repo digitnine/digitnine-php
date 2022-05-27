@@ -28,14 +28,6 @@ class Api
         self::$secret = $secret;
     }
 
-    /*
-     *  Set Headers
-     */
-    public function setHeader($header, $value)
-    {
-        Request::addHeader($header, $value);
-    }
-
     public function setAppDetails($title, $version = null)
     {
         $app = array(
