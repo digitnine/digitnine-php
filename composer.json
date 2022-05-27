@@ -1,5 +1,6 @@
 {
     "name": "digitnine/digitnine",
+    "type": "library",
     "description": "Digit9 PHP Client Library",
     "keywords": ["digitnine", "api", "php", "client"],
     "authors": [

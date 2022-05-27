@@ -4,7 +4,7 @@ namespace Digitnine\Api;
 
 class Api
 {
-    protected static $baseUrl = 'https://api.razorpay.com/v1/';
+    protected static $baseUrl = 'https://api.digitnine.com/v1/';
 
     protected static $key = null;
 
