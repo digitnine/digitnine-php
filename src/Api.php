@@ -1,83 +1,74 @@
 <?php
 
-namespace Digitnine\Api;
+namespace Digitnine;
 
+require_once 'Endpoints.php';
+require_once 'IdentitiyManager.php';
+require_once 'Merchant.php';
+
+use Digitnine\Endpoints;
+use Digitnine\IdentityManager;
+use Digitnine\Merchant;
+
+/**
+ * Class Api
+ * Api for Digit9 Operations
+ *
+ * @package Digitnine
+ */
 class Api
 {
-    protected static $baseUrl = 'https://api.digitnine.com/v1/';
 
-    protected static $key = null;
+	protected static $key = 'test-key';
+	protected static $secret = 'test-secret';
+	protected static $isProduction = false;
+	protected static $epObj ;
 
-    protected static $secret = null;
-
-    /*
+	/*
      * App info is to store the Plugin/integration
      * information
      */
-    public static $appsDetails = array();
+	public static $appsDetails = array();
 
-    const VERSION = '2.8.3';
+	const VERSION = '1.0.0';
 
-    /**
-     * @param string $key
-     * @param string $secret
-     */
-    public function __construct($key, $secret)
-    {
-        self::$key = $key;
-        self::$secret = $secret;
-    }
+	/**
+	 * @param string $key
+	 * @param string $secret
+	 */
+	public function __construct($key, $secret, $isProduction = false)
+	{
+		self::$key = $key;
+		self::$secret = $secret;
+		self::$isProduction = $isProduction;
+		self::$epObj = Endpoints::getInstance();
+		self::$epObj->setProdFlag(false) ;
 
-    public function setAppDetails($title, $version = null)
-    {
-        $app = array(
-            'title' => $title,
-            'version' => $version
-        );
+	}
 
-        array_push(self::$appsDetails, $app);
-    }
 
-    public function getAppsDetails()
-    {
-        return self::$appsDetails;
-    }
+	public static function getKey()
+	{
+		return self::$key;
+	}
 
-    public function setBaseUrl($baseUrl)
-    {
-        self::$baseUrl = $baseUrl;
-    }
+	public static function getSecret()
+	{
+		return self::$secret;
+	}
 
-    /**
-     * @param string $name
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        $className = __NAMESPACE__.'\\'.ucwords($name);
+	public static function checkProduction()
+	{
+		return self::$isProduction;
+	}
 
-        $entity = new $className();
+	public static function getToken()
+	{
+		$data['username'] = self::$key;
+		$data['password'] = self::$secret; 
 
-        return $entity;
-    }
+		$idm = new IdentityManager();
 
-    public static function getBaseUrl()
-    {
-        return self::$baseUrl;
-    }
-
-    public static function getKey()
-    {
-        return self::$key;
-    }
-
-    public static function getSecret()
-    {
-        return self::$secret;
-    }
-
-    public static function getFullUrl($relativeUrl)
-    {
-        return self::getBaseUrl() . $relativeUrl;
-    }
+		return  $idm->getToken($data);
+	}
 }

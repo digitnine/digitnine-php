@@ -1,2 +1,5 @@
 /.phpintel/
 /.vscode/
+/.dist/
+/vendor/
+/composer.lock
