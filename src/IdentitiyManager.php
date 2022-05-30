@@ -13,11 +13,14 @@ class IdentityManager
 {
 
     private static $serviceURL;
+    private static $gzClient;
 
     public function __construct()
     {
         $epObj = Endpoints::getInstance();
-        self::$serviceURL = $epObj->getMerchantServiceUrl();
+        self::$serviceURL = $epObj->getIDMServiceUrl();
+        self::$gzClient = new Client(['base_uri' => self::$serviceURL ]);
+
     }
 
     /**
@@ -27,9 +30,7 @@ class IdentityManager
      */
     public static function getToken($data)
     {
-        $client = new Client();
-
-        $url = self::$serviceURL . "/oauth/token";
+         
 
         $options = [
             //'form_params' => ['data' => json_encode($data)], 
@@ -50,12 +51,15 @@ class IdentityManager
 
         //print_r($options);
 
+        $uri ="/oauth/token";
+
         try {
-            $response = $client->post($url, $options);
+            $response = self::$gzClient->post($uri, $options);
             $reason = $response->getReasonPhrase(); // OK
 
             if ($reason == "OK") {
-                return $response->getBody();
+                $access_token = json_decode ($response->getBody()->read(1024), true )['access_token'];
+                return $access_token  ;
             } else {
             }
         } catch (\Throwable $th) {
