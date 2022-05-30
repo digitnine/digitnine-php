@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 /**
  * Class IdentityManager
  *
- * @package Digitnine\IdentityManager
+ * @package Digitnine
  */
 class IdentityManager
 {

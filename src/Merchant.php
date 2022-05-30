@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 /**
  * Class Merchant
  *
- * @package Digitnine\Merchant
+ * @package Digitnine
  */
 class Merchant
 {

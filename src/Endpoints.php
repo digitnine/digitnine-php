@@ -5,7 +5,7 @@ namespace Digitnine;
 /**
  * Class Endpoints
  *
- * @package Digitnine\Endpoints
+ * @package Digitnine
  */
 class Endpoints
 {
