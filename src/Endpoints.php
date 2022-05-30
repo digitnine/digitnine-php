@@ -1,11 +1,11 @@
 <?php
 
-namespace Digitnine;
+namespace Digitnine\Api;
 
 /**
  * Class Endpoints
  *
- * @package Digitnine
+ * @package Digitnine\Api
  */
 class Endpoints
 {

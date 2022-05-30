@@ -1,21 +1,21 @@
 <?php
 
-namespace Digitnine;
+namespace Digitnine\Api;
 
 session_start();
 require_once 'Endpoints.php';
 require_once 'IdentitiyManager.php';
 require_once 'Merchant.php';
 
-use Digitnine\Endpoints;
-use Digitnine\IdentityManager;
-use Digitnine\Merchant;
+use Digitnine\Api\Endpoints;
+use Digitnine\Api\IdentityManager;
+use Digitnine\Api\Merchant;
 
 /**
  * Class Api
  * Api for Digit9 Operations
  *
- * @package Digitnine
+ * @package Digitnine\Api
  */
 class Api
 {

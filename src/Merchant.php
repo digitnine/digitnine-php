@@ -1,13 +1,13 @@
 <?php
 
-namespace Digitnine;
+namespace Digitnine\Api;
 
 use GuzzleHttp\Client;
 
 /**
  * Class Merchant
  *
- * @package Digitnine
+ * @package Digitnine\Api
  */
 class Merchant
 {
