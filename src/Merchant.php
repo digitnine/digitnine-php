@@ -13,11 +13,15 @@ class Merchant
 {
 
     private static $serviceURL;
+    private static $gzClient;
+    private static $authToken;
 
-    public function __construct()
+    public function __construct($token = null)
     {
         $epObj = Endpoints::getInstance();
         self::$serviceURL = $epObj->getMerchantServiceUrl();
+        self::$gzClient = new Client(['base_uri' => self::$serviceURL]);
+        self::$authToken = $token;
     }
 
     /**
@@ -25,38 +29,32 @@ class Merchant
      * @param $data
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public static function getToken($data)
+    public static function getWallets($data)
     {
-        $client = new Client();
-
-        $url = self::$serviceURL . "/oauth/token";
-
         $options = [
-            //'form_params' => ['data' => json_encode($data)], 
             'headers' => [
-                'Authorization' => 'Basic ' . base64_encode("merchantPortal:password"),
+                'Authorization' => 'Bearer ' . self::$authToken,
             ], 'query' => [
-
-                "grant_type" => "password",
-                "username" => $data['username'],
-                "password" => $data['password']
-
+                "size" => $data['size'] ?? 10,
+                "page" => $data['page'] ?? 0
             ]
         ];
 
-        // if (Api::$proxy != '') {
-        //     $options['proxy'] = Api::$proxy;
-        // }
 
-        //print_r($options);
+        // print_r($options);
+        // exit ;
+
+        $uri = "/v1/service-provider/wallets";
 
         try {
-            $response = $client->post($url, $options);
+            $response = self::$gzClient->get($uri, $options);
             $reason = $response->getReasonPhrase(); // OK
 
             if ($reason == "OK") {
-                return $response->getBody();
+                $wallets = json_decode($response->getBody()->getContents(), true)['content'];
+                return $wallets;
             } else {
+                return false;
             }
         } catch (\Throwable $th) {
             throw $th;

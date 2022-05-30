@@ -12,11 +12,16 @@ $is_production = false;
 
 $api = new Api($api_key, $api_secret,$is_production );
 
+echo "<pre>" ;
 
-//print_r( $api->getKey() );
+echo "User Details \n" ; 
+
+print_r($api->getCurrentUserDetails());
+
+echo "User Wallet \n" ; 
+
+print_r($api->getWallets());
 
 
-print_r($api->checkProduction());
-echo "Manga";
 
-print_r($api->getToken());
+echo "</pre>" ;
