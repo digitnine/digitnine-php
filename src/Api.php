@@ -89,13 +89,16 @@ class Api
 				}
 			}
 		} else {
-
 			if (!empty(self::$token)) {
 				return self::$token;
 			} else {
 				$idm = new IdentityManager();
 				$token_data = $idm->getToken($data);
-				return $idm->getToken($data);
+				if ($token_data) {
+					return $token_data;
+				} else {
+					return  false;
+				}
 			}
 		}
 	}
